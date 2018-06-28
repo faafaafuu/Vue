@@ -12,15 +12,15 @@
 </head>
 <body>
 <div id="app1">
-<input type="text" v-model="search">
-<p>{{search}}</p>
+<input type="checkbox" v-model="isEnabled">
+<p>{{isEnabled}}</p>
 </div>
 <script type="text/javascript">
 // Привязка input
 let sample = new Vue({
     el: "#app1",
     data: {
-        search: ''
+        isEnabled: false
     }
 })
 
