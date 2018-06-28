@@ -12,15 +12,19 @@
 </head>
 <body>
 <div id="app1">
-<input type="checkbox" v-model="isEnabled">
-<p>{{isEnabled}}</p>
+<form action="">
+    <input type="checkbox" v-model="searchTransp" value="car">car
+    <input type="checkbox" v-model="searchTransp" value="boat">boat
+    <input type="checkbox" v-model="searchTransp" value="rocket">rocket
+</form>
+<p>Select: {{searchTransp}}</p>
 </div>
 <script type="text/javascript">
-// Привязка input
+// Привязка 
 let sample = new Vue({
     el: "#app1",
     data: {
-        isEnabled: false
+        searchTransp: []
     }
 })
 
