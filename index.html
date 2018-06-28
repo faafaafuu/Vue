@@ -7,81 +7,22 @@
     <title>Document</title>
 
 <style>
-    .color {
-        color: rgb(5, 71, 71);
-        background-color: bisque;
-    }
 
-    .size {
-        font-family: Verdana;
-        font-size: 24px;
-        margin: 10px;
-    }
 </style>
 </head>
 <body>
-    <div id="app2">
-        <p>{{counter}}</p>
-        <button v-on:click="updateClick">update</button>
-    </div>
-    <button id="destroyClick">delete</button>
 <div id="app1">
-    <p v-text="name" v-bind:class="{'size':true, 'color': true}"></p>
-    <p v-text="name" :class="{'color':flag, 'size':true}"></p>
-    <li v-for="student in students" v-bind:style="firstStyle">{{student.name}}, {{student.age}}</li>
+<input type="text" v-model="search">
+<p>{{search}}</p>
 </div>
-
 <script type="text/javascript">
-
-
-    let sample = new Vue({
-        //el: document.querySelector('#app1'),// Привязка через HTML-елемент
-        el: '#app1',// Привязка через селектор CSS
-        // Св-во data - сожердит все св-ва данного экземпляра
-        data: {
-            students: [
-                {name: 'Max', age:23},
-                {name: 'Ana', age:25},
-                {name: 'Kim', age:26},
-            ],
-            firstStyle: {
-                color: 'blue',
-                fontSize: '20px'
-            },
-            name: 'Nina',
-            userColor: 'color',
-            userSize: 'size',
-            userStyles: ['color', 'size'],
-            flag: false,
-        }
-    })
- 
-
-window.onload = () => {
-    let sample2 = new Vue({
-        el: "#app2",
-        data: {
-            counter: 0
-        },
-        methods: {
-            updateClick: function() {
-                this.counter++;
-            }
-
-        },
-            beforeCreate: () => console.log('creation start'),
-            created: () => console.log('created copy'),
-            beforeMount: () => console.log('start conection'),
-            mounted: () => console.log('conection complete'),
-            beforeUpdate: () => console.log('update beginning'),
-            updated: () => console.log('updated copy'),
-            beforeDestroy: () => console.log('beginning remove'),
-            destroyed: () => console.log('copy delted')
-    })
-    document.querySelector('#destroyClick').addEventListener('click', () => {
-        return sample2.$destroy();
-    })
-}
+// Привязка input
+let sample = new Vue({
+    el: "#app1",
+    data: {
+        search: ''
+    }
+})
 
     
 </script>
