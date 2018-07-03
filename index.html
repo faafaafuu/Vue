@@ -7,18 +7,7 @@
     <title>Document</title>
 
 <style>
-.grand {
-    background: green;
-    height: 30px;
-    width: 250px;
-    padding: 20px;
-}
-.parent {
-    background: red;
-    height: 20px;
-    width: 250px;
-    padding: 20px;
-}
+
 form{
     padding: 20px;
 }
@@ -28,23 +17,16 @@ textarea{
 </style>
 </head>
 <body>
-    <p>Пример показывающий распростронение события <code>click</code> используя этап <code>capture</code> (перехвата)</p>
+    <p>Пример показывающий отмену стандартного дуйствия <code>submit</code> используя модификатор <code>prevent</code></p>
     <p><p>
 <div id="app">
+    <form action="">
     <div>
-        <label>Result:</label>
-        <div class="grand" :click.capture="grandparentClick">
-            <!-- <div class="parent" :click="parentClick"> -->
-                <input type="" v-model="search" placeholder="Ищем">
-
-                <button v-on:click="executeSearch">Поиск</button>
-            </div>
-        </div><br>
-            <small></small>
-        </div>
-        <label for="logTextarea">Event Gournal</label><br>
-        <textarea rows="10" v-model="hist"></textarea>
+        <label>Result:</label><br>
+            <input type="" v-model="search" placeholder="Ищем">
+            <button v-on:click.prevent="executeSearch" type="submit">Поиск</button>
     </div>
+    </form>
 </div>
 <script type="text/javascript">
 // Привязка 
@@ -56,16 +38,14 @@ let sample = new Vue({
     },
     // Обьект экземпляра Vue содержащий функции и поведения
     methods: {
-        executeSearch: function()  {
-            this.hist +='Нажатие кнопки ПОИСК.\n' +'Запрос' +this.search;
-        },
-        parentClick: function()  {
-            this.hist += 'Нажатие род элемента кнопки ПОИСК .\n';
-        },
-        grandparentClick: function() {
-            this.hist += 'Нажатие прарод элемента кнопки ПОИСК .\n';
-        }
-        
+       executeSearch: function() {
+           if (this.search) {
+               document.forms[0].submit()
+           }
+           else {
+               alert('Please, enter your query')
+           }
+       }
     }
 })
 
