@@ -11,23 +11,33 @@
 </style>
 </head>
 <body>
-    <p>Пример использования <code>lazy</code> модификатора.</p>
-    <p>Данный модификатор аналог реагирует на событие onChange<p>
-<div id="app1">
+    <p>Пример использования <code>v-on:click</code> показывающий привязку на событие.</p>
+    <p>v-on:click - директива используется для привязки к обработчику события.<br>
+        После : определяется событие, на которое будет привязанна директива.<br> 
+        onSearch - имя функции, определенной в св-ве methods, обьекта Vue<p>
+<div id="app">
     <div>
         <label>Result:</label>
         <div>
-            <input type="" v-model.lazy="msg">
-            <small>{{msg}}</small>
+            <input type="" v-model="search">
+            <button v-on:click="onSearch">Поиск</button>
+        </div><br>
+            
+            <small>{{search}}</small>
         </div>
     </div>
 </div>
 <script type="text/javascript">
 // Привязка 
 let sample = new Vue({
-    el: "#app1",
+    el: "#app",
     data: {
-        msg: '',
+        search: '',
+    },
+    methods: {
+        onSearch: function() {
+            alert('Вы искали: ' +this.search)
+        }
     }
 })
 
