@@ -12,14 +12,12 @@
 </head>
 <body>
     <p>Пример использования <code>v-on:click</code> показывающий привязку на событие.</p>
-    <p>v-on:click - директива используется для привязки к обработчику события.<br>
-        После : определяется событие, на которое будет привязанна директива.<br> 
-        onSearch - имя функции, определенной в св-ве methods, обьекта Vue<p>
+    <p>e.target<p>
 <div id="app">
     <div>
         <label>Result:</label>
         <div>
-            <input type="" v-model="search">
+            <input type="" v-model="search" placeholder="Ищем">
             <button v-on:click="onSearch">Поиск</button>
         </div><br>
             
@@ -34,9 +32,10 @@ let sample = new Vue({
     data: {
         search: '',
     },
+    // Обьект экземпляра Vue содержащий функции и поведения
     methods: {
-        onSearch: function() {
-            alert('Вы искали: ' +this.search)
+        onSearch: function(e) {
+            alert(`Query: ${this.search} Button ${e.target.innerText} `)
         }
     }
 })
