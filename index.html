@@ -12,13 +12,14 @@
 </head>
 <body>
     <p>Пример использования <code>v-on:click</code> показывающий привязку на событие.</p>
-    <p>e.target<p>
+    <p><p>
 <div id="app">
     <div>
         <label>Result:</label>
         <div>
             <input type="" v-model="search" placeholder="Ищем">
-            <button v-on:click="onSearch">Поиск</button>
+
+            <button v-on:click="onSearch('userr', $event)">Поиск</button>
         </div><br>
             
             <small>{{search}}</small>
@@ -34,8 +35,9 @@ let sample = new Vue({
     },
     // Обьект экземпляра Vue содержащий функции и поведения
     methods: {
-        onSearch: function(e) {
-            alert(`Query: ${this.search} Button ${e.target.innerText} `)
+        onSearch: function(v, e) {
+            var temp = `Обращение: ${v} Query: ${this.search} Button ${e.target.innerText} `;
+            alert(temp)
         }
     }
 })
