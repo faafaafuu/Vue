@@ -11,146 +11,23 @@
 </style>
 </head>
 <body>
-    <p>Пример показывающий разные типы эелемента <code>input</code> в действии.</p>
+    <p>Пример использования <code>trim</code> модификатора.</p>
+    <p>Данный модификатор убирает все пробелы, переносы, табуляции, оставляя всего один пробел</p>
 <div id="app1">
-<form>
-    <div class="row">
-        <div class="col-xs-12 col-md-6 col-lg-4">
-            <!-- Color Type -->
-            <div>
-                <label for="colorInputField">Color</label>
-                <div>
-                    <input type="color" v-model="colorInput">
-                    <small>{{colorInput}}</small>
-                </div>
-            </div>
-            <!-- Date Type -->
-            <div>
-                <label for="dateInputField">Date</label>
-                <div>
-                    <input type="date" v-model="dateInput">
-                    <small>{{dateInput}}</small>
-                </div>
-            </div>
-            <!-- Local Date-Time Type -->
-            <div>
-                <label for="dateTimeLocalInputField">Datetime-local</label>
-                <div>
-                    <input type="datetime-local" v-model="dateTimeLocalInput">
-                    <small>{{dateTimeLocalInput}}</small>
-                </div>
-            </div>
-            <!-- Email Type -->
-            <div>
-                <label for="emailInputField">Email</label>
-                <div>
-                    <input type="email" v-model="emailInput">
-                    <small>{{emailInput}}</small>
-                </div>
-            </div>
-            <!-- Month Type -->
-            <div>
-                <label for="monthInputField">Mont</label>
-                <div>
-                    <input type="month" v-model="monthInput">
-                    <small>{{monthInput}}</small>
-                </div>
-            </div>
-             <!-- Number Type -->
-            <div>
-                <label for="numberInputField">Number</label>
-                <div>
-                    <input type="number" v-model="numberInput">
-                    <small>{{numberInput}}</small>
-                </div>
-            </div>
-             <!-- Password Type -->
-            <div>
-                <label for="passwordInputField">Password</label>
-                <div>
-                    <input type="password" v-model="passwordInput">
-                    <small>{{passwordInput}}</small>
-                </div>
-            </div>
-             <!-- Range Type -->
-            <div>
-                <label for="rangeInputField">Range</label>
-                <div>
-                    <input type="range" v-model="rangeInput">
-                    <small>{{rangeInput}}</small>
-                </div>
-            </div>
-             <!-- Tel Type -->
-            <div>
-                <label for="telInputField">Tel</label>
-                <div>
-                    <input type="tel" v-model="telInput">
-                    <small>{{telInput}}</small>
-                </div>
-            </div>
-             <!-- Text Type -->
-            <div>
-                <label for="textInputField">Text</label>
-                <div>
-                    <input type="text" v-model="textInput">
-                    <small>{{textInput}}</small>
-                </div>
-            </div>
-             <!-- Time Type -->
-            <div>
-                <label for="timeInputField">Time</label>
-                <div>
-                    <input type="time" v-model="timeInput">
-                    <small>{{timeInput}}</small>
-                </div>
-            </div>
-             <!-- Search Type -->
-            <div>
-                <label for="searchInputField">Search</label>
-                <div>
-                    <input type="search" v-model="searchInput">
-                    <small>{{searchInput}}</small>
-                </div>
-            </div>
-             <!-- Url Type -->
-            <div>
-                <label for="urlInputField">Url</label>
-                <div>
-                    <input type="url" v-model="urlInput">
-                    <small>{{urlInput}}</small>
-                </div>
-            </div>
-             <!-- Week Type -->
-            <div>
-                <label for="weekInputField">Time</label>
-                <div>
-                    <input type="week" v-model="weekInput">
-                    <small>{{weekInput}}</small>
-                </div>
-            </div>
+    <div>
+        <label for="searchInput">Search:</label>
+        <div>
+            <input type="search" v-model.trim="search">
+            <small>{{search}}</small>
         </div>
     </div>
-</form>
 </div>
 <script type="text/javascript">
 // Привязка 
 let sample = new Vue({
     el: "#app1",
     data: {
-        colorInput: '(nothing)',
-        dateInput: '(undefined)',
-        dateTimeLocalInput: '(undefined)',
-        emailInput: '(undefined)',
-        monthInput: '(undefined)',
-        numberInput: '(undefined)',
-        passwordInput: '(undefined)',
-        rangeInput: 0,
-        telInput: '(nothing)',
-        textInput: '(undefined)',
-        timeInput: '(undefined)',
-        searchInput: '(undefined)',
-        urlInput: '(undefined)',
-        weekInput: '(undefined)'
+        search: '',
     }
 })
 
