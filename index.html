@@ -7,24 +7,46 @@
     <title>Document</title>
 
 <style>
-
+.grand {
+    background: green;
+    height: 30px;
+    width: 250px;
+    padding: 20px;
+}
+.parent {
+    background: red;
+    height: 20px;
+    width: 250px;
+    padding: 20px;
+}
+form{
+    padding: 20px;
+}
+textarea{
+    width: 250px;
+}
 </style>
 </head>
 <body>
-    <p>Пример использования <code>v-on:click</code> показывающий привязку на событие.</p>
+    <p>Пример показывающий распростронение события <code>click</code></p>
     <p><p>
 <div id="app">
+    <form>
     <div>
         <label>Result:</label>
-        <div>
-            <input type="" v-model="search" placeholder="Ищем">
+        <div class="grand" :click="grandparentClick">
+            <div class="parent" :click="parentClick">
+                <input type="" v-model="search" placeholder="Ищем">
 
-            <button v-on:click="onSearch('userr', $event)">Поиск</button>
+                <button v-on:click="executeSearch">Поиск</button>
+            </div>
         </div><br>
-            
-            <small>{{search}}</small>
+            <small></small>
         </div>
+        <label for="logTextarea">Event Gournal</label><br>
+        <textarea rows="10" v-model="hist"></textarea>
     </div>
+    </form>
 </div>
 <script type="text/javascript">
 // Привязка 
@@ -32,13 +54,20 @@ let sample = new Vue({
     el: "#app",
     data: {
         search: '',
+        hist: ''
     },
     // Обьект экземпляра Vue содержащий функции и поведения
     methods: {
-        onSearch: function(v, e) {
-            var temp = `Обращение: ${v} Query: ${this.search} Button ${e.target.innerText} `;
-            alert(temp)
+        parentClick: function()  {
+            this.hist += 'Нажатие род элемента кнопки ПОИСК .\n';
+        },
+        executeSearch: function()  {
+            this.hist +='Нажатие кнопки ПОИСК.\n' +'Запрос' +this.search;
+        },
+        grandparentClick: function() {
+            this.hist += 'Нажатие прарод элемента кнопки ПОИСК .\n';
         }
+        
     }
 })
 
