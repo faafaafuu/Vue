@@ -11,14 +11,16 @@
 </style>
 </head>
 <body>
-    <p>Пример использования <code>trim</code> модификатора.</p>
-    <p>Данный модификатор убирает все пробелы, переносы, табуляции, оставляя всего один пробел</p>
+    <p>Пример использования <code>number</code> модификатора.</p>
+    <p>Данный модификатор аналог parseInt/Float<p>
+    <p>Результатом будет число если хотя бы первый введенный символ число в остальных случаях будет строкой.<p>
 <div id="app1">
     <div>
-        <label for="searchInput">Search:</label>
+        <label for="searchInput">Result:</label>
         <div>
-            <input type="search" v-model.trim="search">
-            <small>{{search}}</small>
+            <input type="" v-model.number="result">
+            <small>{{result}}</small>
+            <small>{{resultType}}</small>
         </div>
     </div>
 </div>
@@ -27,7 +29,14 @@
 let sample = new Vue({
     el: "#app1",
     data: {
-        search: '',
+        result: '',
+        resultType: '',
+    },
+    watch: {
+        result: function() {
+            var t = typeof this.result;
+            this.resultType = t;
+        }
     }
 })
 
