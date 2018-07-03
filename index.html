@@ -11,16 +11,14 @@
 </style>
 </head>
 <body>
-    <p>Пример использования <code>number</code> модификатора.</p>
-    <p>Данный модификатор аналог parseInt/Float<p>
-    <p>Результатом будет число если хотя бы первый введенный символ число в остальных случаях будет строкой.<p>
+    <p>Пример использования <code>lazy</code> модификатора.</p>
+    <p>Данный модификатор аналог реагирует на событие onChange<p>
 <div id="app1">
     <div>
-        <label for="searchInput">Result:</label>
+        <label>Result:</label>
         <div>
-            <input type="" v-model.number="result">
-            <small>{{result}}</small>
-            <small>{{resultType}}</small>
+            <input type="" v-model.lazy="msg">
+            <small>{{msg}}</small>
         </div>
     </div>
 </div>
@@ -29,14 +27,7 @@
 let sample = new Vue({
     el: "#app1",
     data: {
-        result: '',
-        resultType: '',
-    },
-    watch: {
-        result: function() {
-            var t = typeof this.result;
-            this.resultType = t;
-        }
+        msg: '',
     }
 })
 
