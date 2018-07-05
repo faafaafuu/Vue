@@ -6,86 +6,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <style>
-    .parent, .grandparent {
-        padding: 20px;
-        border: 5px solid rgb(103, 103, 155);
+    .block {
+        border: 2px solid black;
+        padding: 10px;
     }
-    .col-xs-12 {
-        margin-left: 35px;
+    
+    .col-4 {
+        display: inline-block
     }
 </style>
 <title>Vue Forms</title>
 </head>
 <body>
-<div>
+<div class="container">
 <div id="app">
-    <form class="form-horizontal">
-        <p class="text-center">
-            Пример, показывающий набор различных модификаторов событий
-        </p>
-        <div class="row text-center">
-            <div class="col-xs-12 offset-lg-1 col-lg-2">
-                <strong>Перехват</strong>
-                <div class="grandparent" v-on:click.capture="captureGrandparentClick">
-                    <div class="form-group-parent" v-on:click.capture="captureParentClick">
-                        <button class="btn btn-primary" v-on:click.capture="captureExecuteSearch">Search</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                <label for="logTextarea">Handler journal (<a href="#" v-on:click="clearCaptureHistory">Clear</a>)</label>
-                <textarea v-model="captureHistory" rows="9" class="form-control"></textarea>
+<form>
+    <div class="form-group-row">
+        <div class="col-8">
+            Пример, показывающий использование модификатора <code>right</code>. <code>ltft</code>, <code>middle</code>
+        </div>
+        <div class="form-group-row">
+            <div class="col-4">
+                    <div class="col-4">Left modifier</div>
+
+                <div class="block text-center" v-on:click.left="onClick" v-on:mousedown.left="onMouseDown" v-on:mouseup.left="onMouseUp">
+                    Press left mouse button.
                 </div>
             </div>
-            <div class="col-xs-12 offset-lg-1 col-lg-2">
-                <strong>Prevent</strong>
-                <div class="grandparent" :click.prevent="preventGrandparentClick">
-                    <div class="form-group-parent" v-on:click.prevent="preventParentClick">
-                        <button class="btn btn-primary" v-on:click.prevent="preventExecuteSearch" type="submit">Search</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                <label for="logTextarea">Handler journal (<a href="#" v-on:click="clearPreventHistory">Clear</a>)</label>
-                <textarea v-model="preventHistory" rows="9" class="form-control"></textarea>
+            <div class="col-4">
+                    <div class="col-4">Middle modifier</div>
+
+                <div class="block text-center" v-on:mousedown.middle="onMouseDown" v-on:mouseup.middle="onMouseUp">
+                    Press middle mouse button.
                 </div>
             </div>
-            <div class="col-xs-12 offset-lg-1 col-lg-2">
-                <strong>Stop</strong>
-                <div class="grandparent" v-on:click.stop="stopGrandparentClick">
-                    <div class="form-group-parent" v-on:click.stop="stopParentClick">
-                        <button class="btn btn-primary" v-on:click.stop="stopExecuteSearch" type="submit">Search</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                <label for="logTextarea">Handler journal (<a href="#" v-on:click="clearStopHistory">Clear</a>)</label>
-                <textarea v-model="stopHistory" rows="9" class="form-control"></textarea>
-                </div>
-            </div>
-             <div class="col-xs-12 offset-lg-1 col-lg-2">
-                <strong>Self</strong>
-                <div class="grandparent" v-on:click.self="selfGrandparentClick">
-                    <div class="form-group-parent" v-on:click.self="selfParentClick">
-                        <button class="btn btn-primary" v-on:click.self="selfExecuteSearch" type="submit">Search</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                <label for="logTextarea">Handler journal (<a href="#" v-on:click="clearSelfHistory">Clear</a>)</label>
-                <textarea v-model="selfHistory" rows="9" class="form-control"></textarea>
-                </div>
-            </div>
-             <div class="col-xs-12 offset-lg-1 col-lg-2">
-                <strong>Once</strong>
-                <div class="grandparent" v-on:click.once="onceGrandparentClick">
-                    <div class="form-group-parent" v-on:click.once="onceParentClick">
-                        <button class="btn btn-primary" v-on:click.once="onceExecuteSearch" type="submit">Search</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                <label for="logTextarea">Handler journal (<a href="#" v-on:click="clearOnceHistory">Clear</a>)</label>
-                <textarea v-model="onceHistory" rows="9" class="form-control"></textarea>
+            <div class="col-4">
+                    <div class="col-4">Right modifier</div>
+
+                <div class="block text-center" style="border-color:green" v-on:click.rjight="onContextMenu" v-on:mousedown.right="onMouseDown" v-on:mouseup.right="onMouseUp">
+                    Press right mouse button.
                 </div>
             </div>
         </div>
-    </form>
+        <div class="form-group">
+            <label for="logTextarea">Event journal (<a href="#" v-on:click = "clearHistory">Celar</a>)</label>
+            <textarea class="form-control" v-model="history" rows="15"></textarea>
+        </div>
+    </div>
+</form> 
 </div>
 </div>
 
@@ -94,76 +62,42 @@
         var sample  = new Vue({
             el: '#app',
             data: {
-                preventHistory: '',
-                captureHistory: '',
-                stopHistory: '',
-                selfHistory: '', 
-                onceHistory: ''
+                history: '',
             },
-
             methods: {
-                preventExecuteSearch: function() {
-                    this.preventHistory += 'Press search button .\n'
+                onClick: function(e) {
+                    if(e instanceof MouseEvent) {
+                        this.logMouseEvent(e, 'click');
+                        this.history += '---\n\n';
+                    }
                 },
-                preventParentClick: function() {
-                    this.preventHistory += 'Press search button parent element .\n'
+                onContextMenu: function(e) {
+                    this.logMouseEvent(e, 'contextmenu');
+                    this.history += '---\n\n';
                 },
-                preventGrandparentClick: function() {
-                    this.preventHistory += 'Press search button grandparent elemetn .\n'
+                onMouseDown: function(e) {
+                    this.logMouseEvent(e, 'down');
+                    this.history += '---\n\n';
                 },
-                clearPreventHistory: function() {
-                    this.preventHistory = '';
+                onMouseUp: function(e) {
+                    this.logMouseEvent(e, 'up');
+                    this.history += '---\n\n';
                 },
-                captureExecuteSearch: function() {
-                    this.captureHistory += 'Press search button .\n'
+                logMouseEvent: function (e, eName) {
+                    let button = 'Unknow';
+                    if (e.button === 0) {
+                        button = 'Left';
+                    } else if (e.button === 1) {
+                        button = 'Middle';
+                    } else if (e.button === 2) {
+                        button = 'Right'
+                    }
+                    console.log(e);
+                    this.history += `Event ${eName} : ${button} button presed.\n`
                 },
-                captureParentClick: function() {
-                    this.captureHistory += 'Press search button parent element .\n'
-                },
-                captureGrandparentClick: function() {
-                    this.captureHistory += 'Press search button grandparent elemetn .\n'
-                },
-                clearCaptureHistory: function() {
-                    this.captureHistory = '';
-                },
-                stopExecuteSearch: function() {
-                    this.stopHistory += 'Press search button .\n'
-                },
-                stopParentClick: function() {
-                    this.stopHistory += 'Press search button parent element .\n'
-                },
-                stopGrandparentClick: function() {
-                    this.stopHistory += 'Press search button grandparent elemetn .\n'
-                },
-                clearStopHistory: function() {
-                    this.stopHistory = '';
-                },
-                selfExecuteSearch: function() {
-                    this.selfHistory += 'Press search button .\n'
-                },
-                selfParentClick: function() {
-                    this.selfHistory += 'Press search button parent element .\n'
-                },
-                selfGrandparentClick: function() {
-                    this.selfHistory += 'Press search button grandparent elemetn .\n'
-                },
-                clearSelfHistory: function() {
-                    this.selfHistory = '';
-                },
-                onceExecuteSearch: function() {
-                    this.onceHistory += 'Press search button .\n'
-                },
-                onceParentClick: function() {
-                    this.onceHistory += 'Press search button parent element .\n'
-                },
-                onceGrandparentClick: function() {
-                    this.onceHistory += 'Press search button grandparent elemetn .\n'
-                },
-                clearOnceHistory: function() {
-                    this.onceHistory = '';
+                clearHistory: function() {
+                    this.history = '';
                 }
-
-
             }
         })
     }
