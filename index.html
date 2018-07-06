@@ -11,22 +11,33 @@
 <title>Vue basis</title>
 </head>
 <body>
-<div id="app">
+  <div id="app">
 
-  <p v-show="isVisible">Display: block</p>
-  <p v-show="!isVisible">Display: none</p>
-  <button @click="isVisible = !isVisible">visibility</button>
+    <ul><li v-for="(man, index) in people">{{index+1}} {{man.name}} {{man.age}}</li></ul>
+    <hr>
+    <ol><li v-for="num of 4">{{num}}</li></ol>
+    <hr>
+    <ol><li v-for="(value, key, index) of person">{{key}} {{value}} <b>{{index}}</b> </li></ol>
 
-</div>
+  </div>
 
 <script>
 window.onload = function() {
-        new Vue({
-      el: '#app',
-      data: {
-        isVisible: true,
-      },
-    })
+  new Vue({
+    el: '#app',
+    data: {
+      people: [
+        {name: 'Vlad', age: 20},
+        {name: 'Max', age: 25},
+        {name: 'Elena', age: 30}
+      ],
+      person: {
+        name: 'Max',
+        age: 50,
+        job: 'Frontend'
+      }
+    }
+  })
 }
 </script>
 
