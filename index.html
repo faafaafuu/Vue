@@ -19,7 +19,12 @@
 </head>
 <body>
 <div id="app">
-    <h1 v-html="link"></h1>
+    <p>{{count}}</p>
+    <button v-on:click="counter">Plus</button>
+    <hr>
+    <p v-on:mouseover="chColor">{{count1}}</p>
+    <button v-on:click="count1++">Plus</button>
+</div>
 </div>
 
 <script>
@@ -27,7 +32,16 @@ window.onload = function() {
     new Vue ({
         el: '#app',
         data: {
-            link: '<a href="https://www.google.ru/">Google</a>'
+            count: 0,
+            count1: 0,
+        },
+        methods: {
+            chColor: function(e) {
+                e.target.style.color = 'red';
+            },
+            counter: function() {
+                this.count++;
+            }
         }
     })
 }
