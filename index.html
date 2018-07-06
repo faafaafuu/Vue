@@ -23,9 +23,10 @@
 </head>
 <body>
 <div id="app">
-    <div class="circle" @click="isActive = !isActive" :class="getCssClasses" ></div>
-    <div class="circle" :class="[color, {'red':isActive}]"></div>
+    <div class="circle" :style="circleClasses"></div>
+    <div class="circle" :style="[circleClasses, {'width': height + 'px'}]"></div>
     <input type="text" v-model="color">
+    <input type="text" v-model="height">
 </div>
 </div>
 
@@ -34,14 +35,14 @@ window.onload = function() {
         new Vue({
       el: '#app',
       data: {
-        isActive: false,
+        height: '100px',
         color: 'blue'
       },
       computed: {
-        getCssClasses: function() {
+        circleClasses: function() {
           return {
-            'red': this.isActive,
-            'green': !this.isActive
+            'background': this.color, 
+            'height': this.height + 'px'
           }
         }
       },
