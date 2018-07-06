@@ -6,45 +6,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <style>
-    .block {
-        border: 2px solid black;
-        padding: 10px;
-    }
-    
-    .col-4 {
-        display: inline-block
-    }
 </style>
 <title>Vue basis</title>
 </head>
 <body>
 <div id="app">
-    <h1><a href="https://www.google.ru" v-on:click.prevent="">Google</a></h1>
-    <h2 v-on:mousemove="mm">X: {{x}} Y: {{y}}
-        <span v-on:mousemove.stop="">Don't change here</span>
+   <a :href="url">Google</a>
+   <h2>
+        Counter: {{counter}}
     </h2>
-    <input type="text" v-on:keyup.enter="alertValue">
-
+    <button @click="counter++">Rise</button>
 </div>
 </div>
 
 <script>
 window.onload = function() {
-    new Vue ({
-        el: '#app',
-        data: {
-            x: 0,
-            y: 0,
-        },
-        methods: {
-            mm: function(e) {
-                this.x = e.clientX;
-                this.y = e.clientY;
-            },
-            alertValue: function(e) {
-                alert(e.target.value)
-            }
-        }
+    new Vue({
+      el: '#app',
+      data: {
+        url: 'http://google.com',
+        counter: 0
+      },
     })
 }
 </script>
