@@ -19,28 +19,15 @@
 </head>
 <body>
 <div id="app">
-    <p>String: {{name}}</p>
-    <p>Sum: (10 + 50) = {{10 + 50}}</p>
-    <p>Number: {{number}}</p>
-    <p>Methods: {{sayHello()}}</p>
-    <p>If statement: {{ wzup ? 'ok' : 'not ok' }}</p>
-    <p>Function: {{someTxt.split('').reverse('').join('')}}</p>
+  <a v-bind:href="url">{{url}}</a>
 </div>
 
 <script>
 window.onload = function() {
     new Vue ({
-        el: "#app",
+        el: '#app',
         data: {
-            name: "Vue",
-            number: 10,
-            wzup: true,
-            someTxt: 'some text'
-        },
-        methods: {
-            sayHello: function() {
-                return "Hello method"
-            }
+            url: 'https://www.google.ru/',
         }
     })
 }
