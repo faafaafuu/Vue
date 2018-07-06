@@ -6,28 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <style>
-    .circle {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border: 1px solid black;
-        display: inline-block;
-        margin: 40px;
-    }
 
-    .red {background: red;}
-    .blue {background: blue;}
-    .green {background: green;}
 </style>
 <title>Vue basis</title>
 </head>
 <body>
 <div id="app">
-    <div class="circle" :style="circleClasses"></div>
-    <div class="circle" :style="[circleClasses, {'width': height + 'px'}]"></div>
-    <input type="text" v-model="color">
-    <input type="text" v-model="height">
-</div>
+  <template v-if="isVisible">
+    <h1>I'm visible</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+  </template>
+  <template v-else>
+    <h1 style="color:palevioletred">I'm visible</h1>
+    <p style="color:green">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+  </template>
+  <button @click="isVisible = !isVisible">visibility</button>
+ 
+  </div>
 </div>
 
 <script>
@@ -35,20 +30,8 @@ window.onload = function() {
         new Vue({
       el: '#app',
       data: {
-        height: '100px',
-        color: 'blue'
+        isVisible: true,
       },
-      computed: {
-        circleClasses: function() {
-          return {
-            'background': this.color, 
-            'height': this.height + 'px'
-          }
-        }
-      },
-      methods: {
-
-      }
     })
 }
 </script>
