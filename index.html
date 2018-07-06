@@ -23,6 +23,7 @@
     <h2 v-on:mousemove="mm">X: {{x}} Y: {{y}}
         <span v-on:mousemove.stop="">Don't change here</span>
     </h2>
+    <input type="text" v-on:keyup.enter="alertValue">
 
 </div>
 </div>
@@ -39,6 +40,9 @@ window.onload = function() {
             mm: function(e) {
                 this.x = e.clientX;
                 this.y = e.clientY;
+            },
+            alertValue: function(e) {
+                alert(e.target.value)
             }
         }
     })
