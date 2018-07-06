@@ -13,47 +13,40 @@
 <body>
   <div id="app">
 
-    <p>Counter: {{count}}/{{count1}}</p>
-    
-    <p>Computed result: {{computedResult}}</p>
-    <p>Result: {{result()}}</p>
-    <button @click="add()">add</button>
-    <button @click="sub">sub</button>
-    <button @click="count1++">second add</button>
-
+    <p>{{title}}</p>
+    <button @click="title = 'Update title'">Update</button>
   </div>
-
+  <div id="app2">
+      <p>{{title}}</p>
+      <button @click="changeTitle()">Update app1</button>
+  </div>
 <script>
 window.onload = function() {
-  new Vue({
+  var app1 = new Vue({
     el: '#app',
     data: {
-      count:0,
-      count1:0,
+     title: 'Hello vue'
     },
     methods: {
-      add: function() {
-        this.count++;
-      },
-      sub: function() {
-        this.count--;
-      },
-      result: function() {
-        console.log('!!!')
-        return this.count > 3 ? 'More then 3' : 'Less then 3'
-      }
-    },
-    computed: {
-      computedResult: function() {
-        console.log('!!!')
-        return this.count > 3 ? 'More then 3' : 'Less then 3'
-      }
-    },
-    watch: {
-      count:function(val) {
-        return console.log('From watch object: ' + val);
+      alertSome: function() {
+        return alert('from app1 method')
       }
     }
+  })
+  
+  new Vue({
+    el:app2,
+    data: {
+      title: 'Hello app2'
+    },
+    methods: {
+      changeTitle: function() {
+        app1.title = 'Update app1 from app2 button'
+        setTimeout(app1.alertSome, 1000);
+        this.title = 'and here update to'
+        
+      }
+    } 
   })
 }
 </script>
