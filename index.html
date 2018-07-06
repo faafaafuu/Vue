@@ -13,11 +13,12 @@
 <body>
   <div id="app">
 
-    <ul><li v-for="(man, index) in people">{{index+1}} {{man.name}} {{man.age}}</li></ul>
-    <hr>
-    <ol><li v-for="num of 4">{{num}}</li></ol>
-    <hr>
-    <ol><li v-for="(value, key, index) of person">{{key}} {{value}} <b>{{index}}</b> </li></ol>
+    <p>Counter: {{count}}/{{count1}}</p>
+    
+    <p>Computed result: {{computedResult}}</p>
+    <button @click="add()">add</button>
+    <button @click="sub">sub</button>
+    <button @click="count1++">second add</button>
 
   </div>
 
@@ -26,15 +27,21 @@ window.onload = function() {
   new Vue({
     el: '#app',
     data: {
-      people: [
-        {name: 'Vlad', age: 20},
-        {name: 'Max', age: 25},
-        {name: 'Elena', age: 30}
-      ],
-      person: {
-        name: 'Max',
-        age: 50,
-        job: 'Frontend'
+      count:0,
+      count1:0,
+    },
+    methods: {
+      add: function() {
+        this.count++;
+      },
+      sub: function() {
+        this.count--;
+      }
+    },
+    computed: {
+      computedResult: function() {
+        console.log('!!!')
+        return this.count > 3 ? 'More then 3' : 'Less then 3'
       }
     }
   })
