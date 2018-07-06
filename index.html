@@ -19,10 +19,10 @@
 </head>
 <body>
 <div id="app">
-    <hr>
-    <p>{{string}} = {{count}}</p>
-    <button v-on:click="counter(5, 'Изменен на 5 ',$event)">Plus 5</button>
-    <button v-on:click="counter(10, 'Изменен на 10 ',$event)">Plus 10</button>
+    <h1><a href="https://www.google.ru" v-on:click.prevent="">Google</a></h1>
+    <h2 v-on:mousemove="mm">X: {{x}} Y: {{y}}
+        <span v-on:mousemove.stop="">Don't change here</span>
+    </h2>
 
 </div>
 </div>
@@ -32,19 +32,13 @@ window.onload = function() {
     new Vue ({
         el: '#app',
         data: {
-            count: 0,
-            string: 'Counter ',
+            x: 0,
+            y: 0,
         },
         methods: {
-            counter: function(num,str,e) {
-                this.count += num;
-                this.string = str;
-                if (num == 5) {
-                    e.target.style.color = 'blue';
-                } else if(num == 10) {
-                    e.target.style.color = 'green';
-                }
-
+            mm: function(e) {
+                this.x = e.clientX;
+                this.y = e.clientY;
             }
         }
     })
