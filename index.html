@@ -12,17 +12,11 @@
 </head>
 <body>
 <div id="app">
-  <template v-if="isVisible">
-    <h1>I'm visible</h1>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-  </template>
-  <template v-else>
-    <h1 style="color:palevioletred">I'm visible</h1>
-    <p style="color:green">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-  </template>
+
+  <p v-show="isVisible">Display: block</p>
+  <p v-show="!isVisible">Display: none</p>
   <button @click="isVisible = !isVisible">visibility</button>
- 
-  </div>
+
 </div>
 
 <script>
