@@ -19,11 +19,11 @@
 </head>
 <body>
 <div id="app">
-    <p>{{count}}</p>
-    <button v-on:click="counter">Plus</button>
     <hr>
-    <p v-on:mouseover="chColor">{{count1}}</p>
-    <button v-on:click="count1++">Plus</button>
+    <p>{{string}} = {{count}}</p>
+    <button v-on:click="counter(5, 'Изменен на 5 ',$event)">Plus 5</button>
+    <button v-on:click="counter(10, 'Изменен на 10 ',$event)">Plus 10</button>
+
 </div>
 </div>
 
@@ -33,14 +33,18 @@ window.onload = function() {
         el: '#app',
         data: {
             count: 0,
-            count1: 0,
+            string: 'Counter ',
         },
         methods: {
-            chColor: function(e) {
-                e.target.style.color = 'red';
-            },
-            counter: function() {
-                this.count++;
+            counter: function(num,str,e) {
+                this.count += num;
+                this.string = str;
+                if (num == 5) {
+                    e.target.style.color = 'blue';
+                } else if(num == 10) {
+                    e.target.style.color = 'green';
+                }
+
             }
         }
     })
