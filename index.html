@@ -13,40 +13,22 @@
 <body>
   <div id="app">
 
-    <p>{{title}}</p>
-    <button @click="title = 'Update title'">Update</button>
-  </div>
-  <div id="app2">
-      <p>{{title}}</p>
-      <button @click="changeTitle()">Update app1</button>
+    <p ref="header" >{{title}}</p>
+    <button @click="changeColor()"></button>
   </div>
 <script>
 window.onload = function() {
   var app1 = new Vue({
     el: '#app',
     data: {
-     title: 'Hello vue'
+     title: 'old title'
     },
     methods: {
-      alertSome: function() {
-        return alert('from app1 method')
-      }
-    }
-  })
-  
-  new Vue({
-    el:app2,
-    data: {
-      title: 'Hello app2'
+     changeColor: function() {
+      let temp = this.$refs.header.style.color = "red";
+       return temp ? !temp : temp ;
+     }
     },
-    methods: {
-      changeTitle: function() {
-        app1.title = 'Update app1 from app2 button'
-        setTimeout(app1.alertSome, 1000);
-        this.title = 'and here update to'
-        
-      }
-    } 
   })
 }
 </script>
