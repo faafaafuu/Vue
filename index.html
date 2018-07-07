@@ -8,52 +8,36 @@
 <style>
 
 </style>
-<title>Vue basis</title>
+<title>Vue cli</title>
 </head>
 <body>
   <div id="app">
-      <h2>{{title}}</h2>
-      <button @click="title = 'new title'">Change</button>
-      <button @click="doDestroy">Destroy</button>
+    <my-counter></my-counter>
   </div>
 <script>
-window.onload = function() {
-  
-
-  new Vue({
-    el: '#app',
-    data: {
-      title: 'Hello I am Vue!'
-    },
-    methods: {
-      doDestroy: function() {
-        this.$destroy()
+window.onload = () => {
+  Vue.component('my-counter', {
+    template: `
+              <div style="background: palegoldenrod; padding: 20px">
+                <h1>Counter: {{counter}}</h1>
+                <button @click="add">add</button>
+              </div>
+            `,
+    data: function() {
+      return{
+        counter: 0
       }
     },
-    beforeCreate: function() {
-      console.log('Before Create')
-    },
-    created: function() {
-      console.log('Created')
-    },
-    beforeMount: function() {
-      console.log('Before Mount')
-    },
-    mounted: function() {
-      console.log('Mounted')
-    },
-    beforeUpdate: function() {
-      console.log('Before Update')
-    },
-    updated: function() {
-      console.log('Updated')
-    },
-    beforeDestroy: function() {
-      console.log('Before Destroy')
-    },
-    destroyed: function() {
-      console.log('Destroyed')
+    methods: {
+      add: function() {
+        this.counter++;
+      }
     }
+  })
+
+  new Vue ({
+    el: '#app',
+    
   })
 }
 </script>
