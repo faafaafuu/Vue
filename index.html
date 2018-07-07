@@ -12,13 +12,14 @@
 </head>
 <body>
   <div id="app">
-    <my-counter></my-counter>
-    <my-counter></my-counter>
-    <my-counter></my-counter>
+    <my-counter v-for="mc of 2"></my-counter>
+  </div>
+  <div id="app2">
+      <my-counter></my-counter>
   </div>
 <script>
 window.onload = () => {
-  Vue.component('my-counter', {
+  let component = {
     template: `
               <div style="background: palegoldenrod; padding: 20px">
                 <h1>Counter: {{counter}}</h1>
@@ -35,13 +36,23 @@ window.onload = () => {
         this.counter++;
       }
     }
-  })
+  }
 
   new Vue ({
     el: '#app',
+    // Локальный компонент
+    components: {
+      'my-counter': component,
+    }
     
   })
+
+  new Vue ({
+    el: '#app2',
+  })
 }
+
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
