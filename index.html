@@ -13,23 +13,17 @@
 <body>
   <div id="app">
 
-    <p ref="header" >{{title}}</p>
-    <button @click="changeColor()"></button>
   </div>
 <script>
 window.onload = function() {
   var app1 = new Vue({
-    el: '#app',
     data: {
-     title: 'old title'
+     title: 'mount'
     },
-    methods: {
-     changeColor: function() {
-      let temp = this.$refs.header.style.color = "red";
-       return temp ? !temp : temp ;
-     }
-    },
+    template: '<div><p>{{title}}</p></div>'
   })
+
+  app1.$mount( '#app')
 }
 </script>
 
