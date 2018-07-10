@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
   <div>
     <h1>Parent: {{carName}}</h1>
     <app-car 
     :carName="carName"
     :carYear="carYear"
+    @nameChanged="carName = $event"
     ></app-car>
   </div>
   </div>
@@ -20,7 +20,7 @@ export default {
   name: 'app',
   data() {
     return {
-      carName: 'Ford from parent',
+      carName: 'Ford',
       carYear: '1993 from parent',
     }
   },
