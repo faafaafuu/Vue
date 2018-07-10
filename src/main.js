@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Car from './components/Car.vue'
 
-Vue.config.productionTip = false
+Vue.component('app-car', Car)
+
+
 
 new Vue({
+  el: '#app',
   render: h => h(App)
-}).$mount('#app')
+})
