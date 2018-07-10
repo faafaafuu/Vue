@@ -2,13 +2,21 @@
     <div class="car">
         <h3>Name: {{carName}}</h3>
         <p>Year: {{carYear}}</p>
-        <button @click="changeName"></button>
+        <button @click="changeName">changeName</button>
+        <button @click="changeFunc()">changeFunc</button>
 
     </div>
 </template>
 <script>
 export default {
-    props: ['carName', 'carYear'],
+    props: {
+        carName: {
+            type: String,
+            default: 'default Name'
+        },
+        carYear: Number,
+        changeFunc: Function,
+    },
     data() {
         return {
         }
