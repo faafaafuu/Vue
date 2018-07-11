@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 import Home from './pages/Home'
 import Cars from './pages/Cars'
 import Car from './pages/Car'
+import ErrorCmp from './pages/Error'
 import CarFull from './pages/CarFull'
 
 export default new VueRouter({
@@ -12,7 +13,8 @@ export default new VueRouter({
     },
     {
       path: '/cars',
-      component: Cars
+      component: Cars,
+      name: 'cars'
     },
     {
       path: '/car/:id',
@@ -24,22 +26,26 @@ export default new VueRouter({
           name: 'carFull'
         }
       ]
+    },
+    {
+      path: '/none',
+      redirect: {
+        name: 'cars'
+      }
+    },
+    {
+      path: '*',
+      component: ErrorCmp
     }
   ],
   mode: 'history',
   scrollBehavior (to, from, savedPosition) {
-
     if (savedPosition) {
       return savedPosition
     }
-
     if (to.hash) {
       return { selector: to.hash }
     }
-
-    return {
-      x: 0,
-      y: 0
-    }
+    return {x: 0, y: 0}
   }
 })
